@@ -1,8 +1,10 @@
 class Api::ListsController < ApiController
   before_action :authenticated?
+  before_action :set_user
 
   def create
     list = List.new(list_params)
+    list.user = @user
     if list.save
       render json: list
     else
@@ -21,8 +23,13 @@ class Api::ListsController < ApiController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   def list_params
-    params.require(:list, :title).permit(:user_id)
+    params.require(:list).permit(:title, :user_id, :private)
   end
 
 end

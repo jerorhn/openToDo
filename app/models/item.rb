@@ -4,6 +4,5 @@ class Item < ApplicationRecord
 
   def set_defaults
     self.completed = false if self.new_record?
-    self.private = false if self.new_record?
   end
 end

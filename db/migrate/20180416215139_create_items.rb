@@ -3,7 +3,6 @@ class CreateItems < ActiveRecord::Migration[5.1]
     create_table :items do |t|
       t.string :name
       t.boolean :completed
-      t.boolean :private
       t.references :list, foreign_key: true
 
       t.timestamps
